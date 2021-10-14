@@ -80,23 +80,23 @@ trans_func = partial(
     max_seq_len=128)
 
 ignore_label = -100
-fn = Dict({
-    'input_ids': Pad(axis=0, pad_val=tokenizer.pad_token_id),  # input
-    'token_type_ids': Pad(axis=0, pad_val=tokenizer.pad_token_type_id),  # segment
-    'seq_len': Stack(),
-    'labels': Pad(axis=0, pad_val=ignore_label)  # label
-})
-
-
-def batchify_fn(samples, func):
-    return func(samples)
-
-# batchify_fn = lambda samples, fn=Dict({
+# fn = Dict({
 #     'input_ids': Pad(axis=0, pad_val=tokenizer.pad_token_id),  # input
 #     'token_type_ids': Pad(axis=0, pad_val=tokenizer.pad_token_type_id),  # segment
 #     'seq_len': Stack(),
 #     'labels': Pad(axis=0, pad_val=ignore_label)  # label
-# }): fn(samples)
+# })
+
+
+# def batchify_fn(samples, func):
+#     return func(samples)
+
+batchify_fn = lambda samples, fn=Dict({
+    'input_ids': Pad(axis=0, pad_val=tokenizer.pad_token_id),  # input
+    'token_type_ids': Pad(axis=0, pad_val=tokenizer.pad_token_type_id),  # segment
+    'seq_len': Stack(),
+    'labels': Pad(axis=0, pad_val=ignore_label)  # label
+}): fn(samples)
 
 
 # Define the model network

@@ -45,9 +45,7 @@ class CustomDatasetBuilder(DatasetBuilder):
 
     def get_labels(self):
         """You should list all labels in your annotated data manually."""
-        return ['B-DEVICE', 'I-DEVICE', 'B-LOCATION', 'I-LOCATION', 'B-ORGANIZATION', 'I-ORGANIZATION', 'B-OTHERS',
-                'I-OTHERS', 'B-PERSON', 'I-PERSON', 'B-SYSTEM', 'I-SYSTEM', 'B-TECH', 'I-TECH', 'B-TIME', 'I-TIME',
-                'O']
+        return ["B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "O"]
 
     def _get_data(self, mode: str):
         """Not used in this project"""

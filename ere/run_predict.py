@@ -34,7 +34,7 @@ class BCELossForDuIE(nn.Layer):
         return loss
 
 
-with open(os.path.join(cwd, 'ere/data/predicate2id.json'), encoding='utf8') as fp:
+with open(os.path.join(cwd, 'ere/config_data/predicate2id.json'), encoding='utf8') as fp:
     label_map = json.load(fp)
 num_classes = (len(label_map.keys()) - 2) * 2 + 2
 
@@ -58,7 +58,7 @@ def predict(sentence):
     loss_all = 0
     formatted_outputs = []
     current_idx = 0
-    with open(os.path.join(cwd, 'ere/data/id2spo.json'), encoding='utf8') as fp:
+    with open(os.path.join(cwd, 'ere/config_data/id2spo.json'), encoding='utf8') as fp:
         id2spo = json.load(fp)
     for batch in predict_data_loader:
         input_ids, seq_len, tok_to_orig_start_index, tok_to_orig_end_index, labels = batch
