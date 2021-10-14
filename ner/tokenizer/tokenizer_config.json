@@ -1,0 +1,5 @@
+{
+  "do_lower_case": true,
+  "vocab_file": "/Volumes/工作/2021年日常/7-北京业扩报装项目/InformationExtraction/ner/models/vocab.txt",
+  "init_class": "BertTokenizer"
+}
