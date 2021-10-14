@@ -12,6 +12,11 @@ from paddlenlp.transformers import ErnieTokenizer, ErnieForTokenClassification
 from ere.data_loader import DuIEDataset, DataCollator, ChineseAndPunctuationExtractor, convert_example_to_feature
 from ere.utils import decoding
 
+# >>> User defined content required
+paddle.set_device('cpu')
+self_model = 'ere_model_for_general_domain.pdparams'
+# <<< Finished
+
 cwd = os.getcwd()
 
 
@@ -29,7 +34,6 @@ class BCELossForDuIE(nn.Layer):
         return loss
 
 
-paddle.set_device('cpu')
 with open(os.path.join(cwd, 'ere/data/predicate2id.json'), encoding='utf8') as fp:
     label_map = json.load(fp)
 num_classes = (len(label_map.keys()) - 2) * 2 + 2
@@ -38,7 +42,7 @@ num_classes = (len(label_map.keys()) - 2) * 2 + 2
 model = ErnieForTokenClassification.from_pretrained(os.path.join(cwd, 'ere/models'), num_classes=num_classes)
 tokenizer = ErnieTokenizer.from_pretrained(os.path.join(cwd, 'ere/tokenizer'))
 criterion = BCELossForDuIE()
-state_dict = paddle.load(os.path.join(cwd, 'ere/checkpoint/ere_model_for_general_domain.pdparams'))
+state_dict = paddle.load(os.path.join(cwd, 'ere/checkpoint/' + self_model))
 model.set_dict(state_dict)
 
 

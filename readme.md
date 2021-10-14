@@ -83,6 +83,7 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
       请求内容：`{"sentence": "这是一个需要被抽取关系的句子"}`或`{"sentence": ["句子1","句子2",...]}`
 
       返回内容：todo
+5. 如何更改相关配置，参考`ner`和`ere`目录下的`readme.md`文件。
 
 # 4、其他说明
 
