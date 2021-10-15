@@ -63,8 +63,8 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 
 # 3、使用说明
 1. 安装python环境，推荐使用`Anaconda`安装虚拟环境，python的版本须为`3.7.x`。
-2. 切换到新装的虚拟环境，在项目根目录下执行`pip install -r requirements.txt`来安装项目运行的所有依赖项。
-3. 非生产环境下，在项目根目录下执行`python app.py`来启动服务；生产环境中，需要用独立WSGI容器进行部署以提高性能，推荐使用[Tornado](http://docs.jinkan.org/docs/flask/deploying/wsgi-standalone.html#tornado) 。
+2. 切换到新装的虚拟环境，在项目根目录下执行`pip install -r requirements.txt`来安装项目运行的所有依赖项；如果操作系统为windows，则还需执行`pip install -r requirements_win.txt`来安装windows依赖。
+3. 非生产环境下，在项目根目录下执行`python app.py`来启动服务；生产环境启动 ，在linux下，执行`sh start_app.sh`；windows下双击`start_app.bat`。
 4. 启动成功后，项目会在`5000`端口监听请求，合法的路由地址及其对应的参数格式如下所述：
    1. `http://127.0.0.1:5000/ie/ner`
    
@@ -89,7 +89,9 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
       请求内容：`{"sentence": "这是一个需要被抽取关系的句子"}`或`{"sentence": ["句子1","句子2",...]}`
 
       返回内容：todo
-5. 如何更改相关配置，参考`ner`和`ere`目录下的`readme.md`文件。
+   
+5. 终止服务，linux下执行`sh stop_app.sh`，windows下直接关闭相应的命令行窗口。
+6. 如何更改相关配置，参考`ner`和`ere`目录下的`readme.md`文件。
 
 # 4、其他说明
 
