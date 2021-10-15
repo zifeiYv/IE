@@ -10,34 +10,37 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 ├── ere
 │   ├── __init__.py
 │   ├── checkpoint
-│   │   └── model_21391.pdparams
-│   ├── data
-│   │   ├── duie_dev.json
-│   │   ├── duie_test.json
-│   │   ├── duie_test_bak.json
-│   │   ├── duie_train.json
+│   │   └── ere_model_for_general_domain.pdparams
+│   ├── config_data
 │   │   ├── id2spo.json
 │   │   └── predicate2id.json
+│   ├── custom_datasets
+│   │   ├── readme.md
+│   │   ├── test.json
+│   │   └── train.json
 │   ├── data_loader.py
 │   ├── extract_chinese_and_punct.py
 │   ├── models
 │   │   ├── model_config.json
 │   │   └── model_state.pdparams
 │   ├── re_official_evaluation.py
+│   ├── readme.md
 │   ├── run_duie.py
 │   ├── run_predict.py
-│   ├── test.py
 │   ├── tokenizer
 │   │   ├── tokenizer_config.json
 │   │   └── vocab.txt
+│   ├── train.py
+│   ├── train.sh
 │   └── utils.py
 ├── ner
 │   ├── __init__.py
 │   ├── checkpoint
-│   │   └── model_for_general_domain.pdparams
+│   │   └── ner_model_for_general_domain.pdparams
 │   ├── custom_datasets
-│   │   ├── only_train.txt
-│   │   └── readme.md
+│   │   ├── readme.md
+│   │   ├── test.tsv
+│   │   └── train.tsv
 │   ├── models
 │   │   ├── model_config.json
 │   │   └── model_state.pdparams
@@ -47,11 +50,14 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 │   ├── tokenizer
 │   │   ├── tokenizer_config.json
 │   │   └── vocab.txt
+│   ├── train.bat
 │   ├── train.py
 │   ├── train.sh
 │   └── utils.py
 ├── readme.md
-└── requirements.txt
+├── requirements.txt
+└── tornado_server.py
+
 
 ```
 
