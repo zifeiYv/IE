@@ -11,9 +11,10 @@ from paddlenlp.transformers import ErnieTokenizer, ErnieForTokenClassification
 
 from ere.data_loader import DuIEDataset, DataCollator, ChineseAndPunctuationExtractor, convert_example_to_feature
 from ere.utils import decoding
+from config import device
 
 # >>> User defined content required
-paddle.set_device('cpu')
+paddle.set_device(device)
 self_model = 'ere_model_for_general_domain.pdparams'
 # <<< Finished
 

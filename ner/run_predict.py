@@ -9,9 +9,10 @@ from paddle.io import DataLoader
 from paddlenlp.datasets import load_dataset
 from paddlenlp.data import Stack, Pad, Dict
 from paddlenlp.transformers import BertForTokenClassification, BertTokenizer
+from config import device
 
 # >>> User defined content required
-paddle.set_device('cpu')
+paddle.set_device(device)
 label_list = ["B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "O"]
 self_model = 'ner_model_for_general_domain.pdparams'
 # <<< Finished
