@@ -7,14 +7,14 @@ import os
 import logging
 
 from collections import defaultdict
-from file_parser.pdfparser import PdfExtract
+from file_parser import PdfExtract, TextParser
 from config import NER_LABELS, ERE_LABELS
 
 # 支持的文件类型
-valid_file_types = ['.pdf']
 # 对应于每种类型的文件，均需要一个特定的解析器
 parsers = {
-    'pdf': PdfExtract
+    'pdf': PdfExtract,
+    'txt': TextParser
 }
 
 logger = logging.getLogger(__name__)
@@ -29,16 +29,16 @@ def check_path(path: str):
     if os.path.isfile(path):
         logger.info('A file found!')
         ft = os.path.split(path)[1].split('.')[1]
-        if not '.' + ft in valid_file_types:
-            logger.error(f'Unsupported file type: {ft}, you\'re allowed to pass files in' 
-                         f'{valid_file_types} types.')
-            raise Exception(f'Unsupported file type: {ft}, you\'re allowed to pass files in' 
-                            f'{valid_file_types} types.')
+        if ft not in parsers:
+            logger.error(f'Unsupported file type: {ft}, you\'re allowed to pass files in'
+                         f'{list(parsers.keys())} types.')
+            raise Exception(f'Unsupported file type: {ft}, you\'re allowed to pass files in'
+                            f'{list(parsers.keys())} types.')
         return {ft: [path]}
     elif os.path.isdir(path):
         logger.info('A directory found!')
         for i in os.listdir(path):
-            for ft in valid_file_types:
+            for ft in parsers:
                 if (not i.startswith('.')) and (i.endswith(ft)):
                     file_dict[ft[1:]].append(os.path.join(path, i))
         return file_dict
