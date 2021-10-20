@@ -7,6 +7,7 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 ```text
 .
 ├── app.py
+├── config.py
 ├── ere
 │   ├── __init__.py
 │   ├── checkpoint
@@ -30,9 +31,16 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 │   ├── tokenizer
 │   │   ├── tokenizer_config.json
 │   │   └── vocab.txt
+│   ├── train.bat
 │   ├── train.py
 │   ├── train.sh
 │   └── utils.py
+├── file_parser
+│   ├── __init__.py
+│   ├── baseparser.py
+│   ├── pdfparser.py
+│   └── readme.md
+├── log.py
 ├── ner
 │   ├── __init__.py
 │   ├── checkpoint
@@ -44,7 +52,6 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 │   ├── models
 │   │   ├── model_config.json
 │   │   └── model_state.pdparams
-│   ├── predict.py
 │   ├── readme.md
 │   ├── run_predict.py
 │   ├── tokenizer
@@ -55,8 +62,12 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 │   ├── train.sh
 │   └── utils.py
 ├── readme.md
+├── requirement_win.txt
 ├── requirements.txt
-└── tornado_server.py
+├── start_app.bat
+├── start_app.sh
+├── stop_app.sh
+└── utils.py
 
 
 ```
@@ -78,6 +89,8 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 
       返回内容：todo
    
+      其他说明：***此接口只用于单个句子的测试***
+
    2. `http://127.0.0.1:5000/ie/ere`
 
       对应任务：实体识别      
@@ -89,9 +102,24 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
       请求内容：`{"sentence": "这是一个需要被抽取关系的句子"}`或`{"sentence": ["句子1","句子2",...]}`
 
       返回内容：todo
+
+      其他说明：***此接口只用于单个句子的测试***
+
+   3. `http://127.0.0.1:5000/ie/ner_from_path`
+      
+      对应任务：对批量文件的实体识别     
+
+      请求方式：`POST`
+
+      参数格式：`application/json`
+
+      请求内容：`{"file_or_directory_path": "一个文件或文件夹的绝对路径"}`
+
+      其他说明：目前只支持解析*非扫描类的PDF文件*，但项目预留了处理其他类文档的接口，可以按需扩展。详细说明见`./file_parser/readme.md`
+
    
-5. 终止服务，linux下执行`sh stop_app.sh`，windows下直接关闭相应的命令行窗口。
-6. 如何更改相关配置，参考`ner`和`ere`目录下的`readme.md`文件。
+6. 终止服务，linux下执行`sh stop_app.sh`，windows下直接关闭相应的命令行窗口。
+7. 如何更改相关配置，参考`ner`和`ere`目录下的`readme.md`文件。
 
 # 4、其他说明
 
