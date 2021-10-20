@@ -20,7 +20,7 @@ parsers = {
 logger = logging.getLogger(__name__)
 
 
-def check_path(path: str):
+def check_path(path: str, file_type: str = None):
     """检查传入的文件是否有效"""
     file_dict = defaultdict(list)
     if not os.path.isabs(path):
@@ -37,8 +37,17 @@ def check_path(path: str):
         return {ft: [path]}
     elif os.path.isdir(path):
         logger.info('A directory found!')
+        file_type = None if file_type == "" else file_type
+        if file_type is not None:
+            if file_type not in parsers:
+                logger.warning(f'The passing file type: `{file_type}` is not in '
+                               f'supported file type list: `{list(parsers.keys())}` '
+                               f'and will be ignored.')
+                file_type = None
         for i in os.listdir(path):
             for ft in parsers:
+                if file_type is not None and ft != file_type:
+                    continue
                 if (not i.startswith('.')) and (i.endswith(ft)):
                     file_dict[ft[1:]].append(os.path.join(path, i))
         return file_dict

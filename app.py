@@ -44,13 +44,16 @@ def ner_from_path():
 
     注意，算法不支持嵌套文件夹的遍历，即如果所指定路径含子文件夹，则不会读取子文件夹的内容。
     """
-    path = request.json['file_or_directory_path']
+    paras = request.json
+    path = paras['file_or_directory_path']
+    file_type = paras['file_type']
     logger.info(f'获取参数：{path}')
-    file_dict = check_path(path)
+    file_dict = check_path(path, file_type)
     if len(file_dict) == 0:
         err_msg = f'{path}不是一个文件/不是一个路径/路径下不包含可解析的文件！'
         logger.error(err_msg)
         return jsonify({'state': 0, 'msg': err_msg})
+
     file_sentences = extract_sentences(file_dict)
     res = defaultdict(list)
     logger.info('开始抽取实体...')

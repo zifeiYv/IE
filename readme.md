@@ -113,9 +113,11 @@ NER）和实体关系提取（Entity Relationship Extraction, ERE）两个子任
 
       参数格式：`application/json`
 
-      请求内容：`{"file_or_directory_path": "一个文件或文件夹的绝对路径"}`
+      请求内容：`{"file_or_directory_path": "一个文件或文件夹的绝对路径", "file_type": "pdf"}`
 
-      其他说明：目前只支持解析*非扫描类的PDF文件*，但项目预留了处理其他类文档的接口，可以按需扩展。详细说明见`./file_parser/readme.md`
+      其他说明：
+      1. 目前只支持解析*非扫描类的PDF文件*和*以`.txt`结尾的纯文本文件*，但项目预留了处理其他类文档的接口，可以按需扩展，详细说明见`./file_parser/readme.md`。
+      2. 请求内容中，如果`file_or_directory_path`指定了一个文件地址，则`file_type`值无效；如果`file_or_directory_path`指定了一个目录，`file_type`的值为`""`（这时将遍历该目录下所有支持的文件格式进行提取）或一个文件后缀（如`"pdf"`，这时对该目录下指定类型的文件进行提取）。
 
    
 6. 终止服务，linux下执行`sh stop_app.sh`，windows下直接关闭相应的命令行窗口。
