@@ -3,7 +3,7 @@
 from .baseparser import BaseExtract
 
 
-class TextParser(BaseExtract):
+class TextExtract(BaseExtract):
 
     @classmethod
     def get_list(cls, file_path):

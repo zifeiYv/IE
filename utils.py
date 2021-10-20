@@ -7,14 +7,14 @@ import os
 import logging
 
 from collections import defaultdict
-from file_parser import PdfExtract, TextParser
+from file_parser import PdfExtract, TextExtract
 from config import NER_LABELS, ERE_LABELS
 
 # 支持的文件类型
 # 对应于每种类型的文件，均需要一个特定的解析器
 parsers = {
     'pdf': PdfExtract,
-    'txt': TextParser
+    'txt': TextExtract
 }
 
 logger = logging.getLogger(__name__)

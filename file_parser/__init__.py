@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Author: sunjw
 from .pdfparser import PdfExtract
-from .textparser import TextParser
+from .textextract import TextExtract
 
 __all__ = [
     'PdfExtract',
-    'TextParser'
+    'TextExtract'
 ]
